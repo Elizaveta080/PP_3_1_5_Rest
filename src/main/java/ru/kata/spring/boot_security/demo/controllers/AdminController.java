@@ -25,14 +25,16 @@ public class AdminController {
         this.roleService = roleService;
     }
 
+
     @GetMapping("/admin")
-    public List<User> getAllUsers(){
-        return userService.getAllUsers();
+    public ResponseEntity<List<User>> getAllUsers(){
+        return new ResponseEntity<>(userService.getAllUsers(),HttpStatus.OK);
     }
 
     @GetMapping("/admin/{id}")
-    public User getUser(@PathVariable("id") int id){
-        return userService.getUserById(id);
+    public ResponseEntity<User>getUser(@PathVariable("id") int id){
+        userService.getUserById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 
